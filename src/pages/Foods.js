@@ -7,5 +7,4 @@ function Foods(props) {
         </>
     )
 }
-
 export default Foods;
