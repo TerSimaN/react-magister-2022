@@ -2,6 +2,7 @@ import { Navbar, Container, Nav } from 'react-bootstrap';
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faToggleOn, faToggleOff } from '@fortawesome/free-solid-svg-icons';
+import { LinkContainer } from 'react-router-bootstrap';
 
 function Navigation(props) {
 
@@ -11,11 +12,17 @@ function Navigation(props) {
         <>
             <Navbar bg={color ? 'light' : 'dark'} variant={color ? 'light' : 'dark'}>
                 <Container>
-                    <Navbar.Brand>Navbar</Navbar.Brand>
+                    <Navbar.Brand>Foods'N'Breweries</Navbar.Brand>
                     <Nav className="me-auto">
-                        <Nav.Link>Home</Nav.Link>
-                        <Nav.Link>Foods</Nav.Link>
-                        <Nav.Link>Breweries</Nav.Link>
+                        <LinkContainer to="/">
+                            <Nav.Link href="/">Home</Nav.Link>
+                        </LinkContainer>
+                        <LinkContainer to="/foods">
+                            <Nav.Link href="/foods">Foods</Nav.Link>
+                        </LinkContainer>
+                        <LinkContainer to="/breweries">
+                            <Nav.Link href="/breweries">Breweries</Nav.Link>
+                        </LinkContainer>
                     </Nav>
                     <FontAwesomeIcon
                         className={color ? 'text-dark' : 'text-light'}
