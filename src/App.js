@@ -48,6 +48,7 @@ function App() {
                     </Routes>
                 </Row>
             </Container>
+            <footer className="py-3 my-4"></footer>
         </Router>
     )
 }

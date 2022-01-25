@@ -4,7 +4,7 @@ function BreweriesGridItem({brewery}) {
     return (
         <>
             <Col md={4}>
-                <Card style={{ width: '16rem' }}>
+                <Card className="mx-auto my-2" style={{ width: '16rem' }}>
                     <Card.Header as="h5">Brewery: "{brewery.name}"</Card.Header>
                     <ListGroup variant="flush">
                         <ListGroupItem>Type: "{brewery.brewery_type}"</ListGroupItem>

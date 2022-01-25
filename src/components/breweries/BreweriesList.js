@@ -24,7 +24,7 @@ function BreweriesList({breweries}) {
     function getBreweriesTable() {
         return (
             <>
-                <Table striped bordered hover size="sm">
+                <Table striped hover>
                     <thead>
                         <tr>
                             <th>Brewery Name</th>
