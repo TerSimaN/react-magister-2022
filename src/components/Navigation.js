@@ -12,7 +12,7 @@ function Navigation(props) {
         <>
             <Navbar bg={color ? 'light' : 'dark'} variant={color ? 'light' : 'dark'}>
                 <Container>
-                    <Navbar.Brand>Foods'N'Breweries</Navbar.Brand>
+                    <Navbar.Brand>Food'N'Breweries</Navbar.Brand>
                     <Nav className="me-auto">
                         <LinkContainer to="/">
                             <Nav.Link href="/">Home</Nav.Link>
