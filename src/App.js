@@ -1,8 +1,8 @@
 import { Container, Row } from "react-bootstrap";
-import Navigation from "./components/Navigation";
+import Navigation from "./components/navbar/Navigation";
 import Breweries from "./pages/Breweries";
-import Foods from "./pages/Foods";
 import Home from "./pages/Home";
+import { ThemeProvider } from "./ThemeContext";
 
 import {
     BrowserRouter as Router,
@@ -15,10 +15,6 @@ const routes = [
         path: "/",
         page: <Home />,
         exact: true
-    },
-    {
-        path: "/foods",
-        page: <Foods />
     },
     {
         path: "/breweries",
@@ -39,17 +35,19 @@ function App() {
     }
 
     return (
-        <Router>
-            <Navigation />
-            <Container>
-                <Row className="mt-5">
-                    <Routes>
-                        {getRoutes()}
-                    </Routes>
-                </Row>
-            </Container>
-            <footer className="py-3 my-4"></footer>
-        </Router>
+        <ThemeProvider>
+            <Router>
+                <Navigation />
+                <Container>
+                    <Row className="mt-5">
+                        <Routes>
+                            {getRoutes()}
+                        </Routes>
+                    </Row>
+                </Container>
+                <footer className="py-3 my-4"></footer>
+            </Router>
+        </ThemeProvider>
     )
 }
 
