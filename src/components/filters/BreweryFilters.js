@@ -8,22 +8,22 @@ function BreweryFilters(props) {
 
     return (
         <Form 
-            className="form" 
+            className="filter-form" 
             style={{
                 backgroundColor: theme ? "black" : "", 
                 color: theme ? "white" : "black",
                 borderColor: theme ? "black" : "lightgray",
             }}>
             <h5>Filter By</h5>
-            <Form.Group className="form-group" controlId="formBreweryName">
+            <Form.Group className="filter-form-group" controlId="formBreweryName">
                 <Form.Label>Brewery Name</Form.Label>
                 <Form.Control type="text" placeholder="E.g. 101 Brewery" />
             </Form.Group>
-            <Form.Group className="form-group" controlId="formBreweryCity">
+            <Form.Group className="filter-form-group" controlId="formBreweryCity">
                 <Form.Label>Brewery City</Form.Label>
                 <Form.Control type="text" placeholder="E.g. Portland" />
             </Form.Group>
-            <Form.Group className="form-group" controlId="formBreweryState">
+            <Form.Group className="filter-form-group" controlId="formBreweryState">
                 <Form.Label>Brewery State</Form.Label>
                 <Form.Control type="text" placeholder="E.g. Idaho" />
             </Form.Group>

@@ -61,7 +61,7 @@ function SelectType(props) {
 
     return (
         <>
-            <Form.Group className="form-group" controlId="formSelectBreweryType">
+            <Form.Group className="filter-form-group" controlId="formSelectBreweryType">
                 <Form.Label>Select Brewery Type</Form.Label>
                 <Form.Select>
                     {getTypeOptions()}
