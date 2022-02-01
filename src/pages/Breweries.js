@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Container } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import BreweriesList from "../components/breweries/BreweriesList";
+import BreweryFilters from "../components/filters/BreweryFilters";
 
 function Breweries(props) {
 
@@ -21,7 +22,14 @@ function Breweries(props) {
     return (
         <>
             <Container>
-                <BreweriesList  breweries={breweries}/>
+                <Row className="justify-content-md-center">
+                    <Col md={3}>
+                        <BreweryFilters />
+                    </Col>
+                    <Col md={8}>
+                        <BreweriesList  breweries={breweries}/>
+                    </Col>
+                </Row>
             </Container>
         </>
     )
