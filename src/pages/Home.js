@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Card, Col, Container, ListGroup, ListGroupItem, Row } from "react-bootstrap";
+import { useTheme } from "../ThemeContext";
 
 function Home(props) {
 
+    const [theme] = useTheme();
     const [foodImageUrl, setFoodImageUrl] = useState("");
 
     function fetchFoodImage() {
@@ -29,7 +31,9 @@ function Home(props) {
                 </Row>
                 <Row className="justify-content-md-center">
                     <Col md={3}>
-                        <Card style={{ width: '18rem' }}>
+                        <Card className="card-home-element"
+                            bg={theme ? "dark" : "light"} 
+                            text={theme ? "light" : "dark"}>
                             <Card.Img variant="top" src={foodImageUrl} />
                             <Card.Body>
                                 <Card.Title style={{ textAlign: 'center' }}>
@@ -39,14 +43,17 @@ function Home(props) {
                         </Card>
                     </Col>
                     <Col md={3}>
-                        <Card style={{ width: '18rem' }}>
+                        <Card className="card-home-element"
+                            bg={theme ? "dark" : "light"} 
+                            text={theme ? "light" : "dark"}>
                             <Card.Header as="h5">Brewery: "12 Acres Brewing Company"</Card.Header>
                             <ListGroup variant="flush">
-                                <ListGroupItem>Type: "micro"</ListGroupItem>
-                                <ListGroupItem>City: Killeshin</ListGroupItem>
-                                <ListGroupItem>State: None</ListGroupItem>
-                                <ListGroupItem>Country: Ireland</ListGroupItem>
-                                <ListGroupItem style={{ textAlign: 'center' }}>
+                                <ListGroupItem variant={theme ? "dark" : "light"}>Type: "micro"</ListGroupItem>
+                                <ListGroupItem variant={theme ? "dark" : "light"}>City: Killeshin</ListGroupItem>
+                                <ListGroupItem variant={theme ? "dark" : "light"}>State: None</ListGroupItem>
+                                <ListGroupItem variant={theme ? "dark" : "light"}>Country: Ireland</ListGroupItem>
+                                <ListGroupItem className="list-group-item-link"
+                                     variant={theme ? "dark" : "light"}>
                                     <Card.Link href="https://12acresbrewing.ie/">Website Link</Card.Link>
                                 </ListGroupItem>
                             </ListGroup>
