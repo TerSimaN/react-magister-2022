@@ -4,6 +4,7 @@
 
 .filter-form {
     padding: 1rem;
+    margin-bottom: .25rem;
     border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 5px;
     border-color: lightgray;
@@ -39,6 +40,12 @@
 
 .card-home-element {
     width: 18rem;
+    .card-home-element-header {
+        padding-right: 2rem;
+        .change-icon {
+            font-size: 1em;
+        }
+    }
 }
 
 .list-group-item-link {
