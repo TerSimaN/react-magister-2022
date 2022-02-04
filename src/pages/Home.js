@@ -1,7 +1,10 @@
+import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Card, Col, Container, ListGroup, ListGroupItem, Row } from "react-bootstrap";
 import { useTheme } from "../ThemeContext";
+import constants from "../constants";
 
 function Home(props) {
 
@@ -9,7 +12,7 @@ function Home(props) {
     const [foodImageUrl, setFoodImageUrl] = useState("");
 
     function fetchFoodImage() {
-        axios.get('https://foodish-api.herokuapp.com/api/')
+        axios.get(`${constants.foodsBaseUrl}`)
         .then(function (response) {
             setFoodImageUrl(response.data.image);
         });
@@ -24,7 +27,7 @@ function Home(props) {
             <Container>
                 <Row className="justify-content-md-center">
                     <Col md={6}>
-                        <h2 style={{ textAlign: 'center' }}>
+                        <h2 className="homepage-header">
                             Welcome to Food'n'Breweries
                         </h2>
                     </Col>
@@ -34,12 +37,18 @@ function Home(props) {
                         <Card className="card-home-element"
                             bg={theme ? "dark" : "light"} 
                             text={theme ? "light" : "dark"}>
-                            <Card.Img variant="top" src={foodImageUrl} />
-                            <Card.Body>
+                            <Card.Body className="p-2 position-relative">
+                                <FontAwesomeIcon 
+                                    className="mt-2 me-2 position-absolute top-0 end-0"
+                                    onClick={fetchFoodImage} 
+                                    icon={faSyncAlt} 
+                                    title="Change food"
+                                    size="lg" />
                                 <Card.Title style={{ textAlign: 'center' }}>
                                     {foodImageUrl.slice(41, foodImageUrl.lastIndexOf('/'))}
                                 </Card.Title>
                             </Card.Body>
+                            <Card.Img src={foodImageUrl} />
                         </Card>
                     </Col>
                     <Col md={3}>
