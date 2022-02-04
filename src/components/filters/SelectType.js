@@ -1,11 +1,12 @@
 import { Form } from "react-bootstrap";
+import { useBrewery } from "../breweries/BreweryContext";
 
 function SelectType(props) {
 
     const typeOptions = [
         {
             value: "none",
-            type: "No type selected"
+            type: "No type"
         },
         {
             value: "micro",
@@ -40,14 +41,12 @@ function SelectType(props) {
             type: "Contract brewery"
         },
         {
-            value: "proprietor",
-            type: "Proprietor brewery"
-        },
-        {
             value: "closed",
             type: "Closed brewery"
         },
     ]
+
+    const {selectedType, setSelectedType} = useBrewery();
 
     function getTypeOptions() {
         return typeOptions.map(typeOption => {
@@ -63,7 +62,9 @@ function SelectType(props) {
         <>
             <Form.Group className="filter-form-group" controlId="formSelectBreweryType">
                 <Form.Label>Select Brewery Type</Form.Label>
-                <Form.Select>
+                <Form.Select 
+                    value={selectedType}
+                    onChange={element => setSelectedType(element.target.value)}>
                     {getTypeOptions()}
                 </Form.Select>
             </Form.Group>
