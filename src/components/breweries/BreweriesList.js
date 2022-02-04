@@ -5,14 +5,20 @@ import { Row, Table } from "react-bootstrap";
 import BreweriesGridItem from "./BreweriesGridItem";
 import BreweriesTableItem from "./BreweriesTableItem";
 import { useTheme } from "../../ThemeContext";
+import { useBrewery } from "./BreweryContext";
+import NoBreweriesFound from "./NoBreweriesFound";
 
-function BreweriesList({breweries}) {
+function BreweriesList(props) {
 
     const [theme] = useTheme();
-
     const [list, toggleList] = useState(false);
+    const {breweries} = useBrewery();
 
     function renderBreweries() {
+        if (!breweries.length) {
+            return <NoBreweriesFound message={"Didn't find any breweries!"} />
+        }
+
         return list ? showBreweriesTable() : getBreweriesGridItems();
     }
 
@@ -56,11 +62,7 @@ function BreweriesList({breweries}) {
 
     return (
         <>
-            <Row className="filter-results"
-                style={{
-                    backgroundColor: theme ? "black" : "", 
-                    color: theme ? "white" : "black",
-                }}>
+            <Row className={ `filter-results ${theme ? 'dark-theme' : ''}` } >
                 <div className="d-flex justify-content-md-between align-items-center py-2 px-3">
                     <div>
                         <h5>Breweries Filter results</h5>
