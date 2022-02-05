@@ -1,18 +1,21 @@
 import { faList, faTh } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Row, Table } from "react-bootstrap";
+import { useTheme } from "../../ThemeContext";
+import { toggleList } from "../../redux/actions";
 import BreweriesGridItem from "./BreweriesGridItem";
 import BreweriesTableItem from "./BreweriesTableItem";
-import { useTheme } from "../../ThemeContext";
-import { useBrewery } from "./BreweryContext";
 import NoBreweriesFound from "./NoBreweriesFound";
 
 function BreweriesList(props) {
 
     const [theme] = useTheme();
-    const [list, toggleList] = useState(false);
-    const {breweries} = useBrewery();
+    
+    const breweries = useSelector((state) => state.breweries);
+
+    const list = useSelector((state) => state.list);
+    const dispatch = useDispatch();
 
     function renderBreweries() {
         if (!breweries.length) {
@@ -68,7 +71,7 @@ function BreweriesList(props) {
                         <h5>Breweries Filter results</h5>
                     </div>
                     <FontAwesomeIcon 
-                        onClick={() => {toggleList(!list)}}
+                        onClick={() => {dispatch(toggleList(!list))}}
                         icon={list ? faTh : faList}
                         title={list ? "Grid View" : "List View"}
                         size="lg" />

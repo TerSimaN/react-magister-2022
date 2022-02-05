@@ -2,16 +2,20 @@ import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useTheme } from "../../ThemeContext";
 import { useBrewery } from "../breweries/BreweryContext";
+import { useDispatch } from "react-redux";
+import { getBreweries } from "../../redux/actions";
 import SelectType from "./SelectType";
 import BreweriesPerPage from "./BreweriesPerPage";
 
 function BreweryFilters(props) {
 
     const [theme] = useTheme();
-    const {selectedType, breweriesPerPage, fetchBreweries} = useBrewery();
+    const {selectedType, breweriesPerPage} = useBrewery();
     const [nameFilter, setNameFilter] = useState("");
     const [cityFilter, setCityFilter] = useState("");
     const [stateFilter, setStateFilter] = useState("");
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
         fetchBreweries();
@@ -33,31 +37,25 @@ function BreweryFilters(props) {
 
     function onFormSubmit(form) {
         form.preventDefault();
-        getBreweries();
-
-        console.log(selectedType);
-        console.log(nameFilter);
-        console.log(cityFilter);
-        console.log(stateFilter);
-        console.log(breweriesPerPage);
+        fetchBreweries();
     }
 
-    function getBreweries() {
+    function fetchBreweries() {
         if (selectedType === "none") {
-            fetchBreweries({
+            dispatch(getBreweries({
                 "by_name": nameFilter,
                 "by_city": cityFilter,
                 "by_state": stateFilter,
                 "per_page": breweriesPerPage,
-            });
+            }));
         } else {
-            fetchBreweries({
+            dispatch(getBreweries({
                 "by_name": nameFilter,
                 "by_city": cityFilter,
                 "by_state": stateFilter,
                 "by_type": selectedType,
                 "per_page": breweriesPerPage,
-            });
+            }));
         }
     }
 
