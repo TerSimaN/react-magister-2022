@@ -1,6 +1,7 @@
-import axios from "axios";
 import React, { useContext, useState } from "react";
-import constants from "../../constants";
+
+// import axios from "axios";
+// import constants from "../../constants";
 
 const BreweryContext = React.createContext();
 
@@ -10,18 +11,19 @@ export function useBrewery() {
 
 export function BreweryProvider(props) {
     
-    const [selectedType, setSelectedType] = useState("micro");
+    const [selectedType, setSelectedType] = useState("none");
     const [breweriesPerPage, setBreweriesPerPage] = useState(20);
-    const [breweries, setBreweries] = useState([]);
 
-    function fetchBreweries(params) {
-        axios.get(`${constants.breweriesBaseUrl}`, {
-            params: {...params}
-        })
-        .then(function (response) {
-            setBreweries(response.data);
-        });
-    }
+    // const [breweries, setBreweries] = useState([]);
+
+    // function fetchBreweries(params) {
+    //     axios.get(`${constants.breweriesBaseUrl}`, {
+    //         params: {...params}
+    //     })
+    //     .then(function (response) {
+    //         setBreweries(response.data);
+    //     });
+    // }
     
     return (
         <>
@@ -30,9 +32,6 @@ export function BreweryProvider(props) {
                 setSelectedType,
                 breweriesPerPage,
                 setBreweriesPerPage,
-                breweries,
-                setBreweries,
-                fetchBreweries,
             }}>
                 {props.children}
             </BreweryContext.Provider>
