@@ -2,7 +2,6 @@ import { faList, faTh } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector, useDispatch } from "react-redux";
 import { Row, Table } from "react-bootstrap";
-import { useTheme } from "../../ThemeContext";
 import { toggleList } from "../../redux/actions";
 import BreweriesGridItem from "./BreweriesGridItem";
 import BreweriesTableItem from "./BreweriesTableItem";
@@ -10,7 +9,7 @@ import NoBreweriesFound from "./NoBreweriesFound";
 
 function BreweriesList(props) {
 
-    const [theme] = useTheme();
+    const theme = useSelector((state) => state.darkTheme);
     
     const breweries = useSelector((state) => state.breweries);
 

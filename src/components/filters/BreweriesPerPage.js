@@ -1,5 +1,6 @@
 import { Form } from "react-bootstrap";
-import { useBrewery } from "../breweries/BreweryContext";
+import { useSelector, useDispatch } from "react-redux";
+import { setBreweriesPerPage } from "../../redux/actions";
 
 function BreweriesPerPage(props) {
 
@@ -24,7 +25,8 @@ function BreweriesPerPage(props) {
         },
     ]
 
-    const {breweriesPerPage, setBreweriesPerPage} = useBrewery();
+    const breweriesPerPage = useSelector((state) => state.breweriesPerPage);
+    const dispatch = useDispatch();
 
     function getPerPageOptions() {
         return perPageOptions.map(perPageOption => {
@@ -42,7 +44,7 @@ function BreweriesPerPage(props) {
                 <Form.Label>Number of Breweries per Page</Form.Label>
                 <Form.Select 
                     value={breweriesPerPage}
-                    onChange={element => setBreweriesPerPage(element.target.value)}>
+                    onChange={(element) => {dispatch(setBreweriesPerPage(element.target.value))}}>
                     {getPerPageOptions()}
                 </Form.Select>
             </Form.Group>

@@ -1,18 +1,25 @@
 import { useEffect } from "react";
 import { Col } from "react-bootstrap";
-import { useHomepage } from "./HomepageContext";
+import { useSelector, useDispatch } from "react-redux";
+import { getFoodImage, getRandomBrewery } from "../../redux/actions";
 
 function HomepageTitle(props) {
     
-    const {
-        fetchFoodImage,
-        fetchRandomBrewery,
-    } = useHomepage();
+    const page = useSelector((state) => state.randomPage);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         fetchFoodImage();
         fetchRandomBrewery();
     }, []);
+
+    function fetchFoodImage() {
+        dispatch(getFoodImage());
+    }
+
+    function fetchRandomBrewery() {
+        dispatch(getRandomBrewery(page));
+    }
 
     return (
         <>

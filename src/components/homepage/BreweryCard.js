@@ -1,17 +1,27 @@
 import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Card, Col, ListGroup, ListGroupItem } from "react-bootstrap";
-import { useTheme } from "../../ThemeContext";
-import { useHomepage } from "./HomepageContext";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setRandomPage, getRandomBrewery } from "../../redux/actions";
 
 function BreweryCard(props) {
 
-    const [theme] = useTheme();
+    const theme = useSelector((state) => state.darkTheme);
     
-    const {
-        randomBrewery, 
-        fetchRandomBrewery, 
-    } = useHomepage();
+    const randomBrewery = useSelector((state) => state.breweries);
+    const page = useSelector((state) => state.randomPage);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(setRandomPage(Math.floor(Math.random() * (1000 - 1) + 1)));
+    }, []);
+
+    function fetchRandomBrewery() {
+        dispatch(setRandomPage(Math.floor(Math.random() * (1000 - 1) + 1)));
+        dispatch(getRandomBrewery(page));
+    }
 
     return (
         <>

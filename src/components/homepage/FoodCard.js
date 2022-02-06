@@ -1,17 +1,20 @@
 import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Card, Col } from "react-bootstrap";
-import { useTheme } from "../../ThemeContext";
-import { useHomepage } from "./HomepageContext";
+import { useSelector, useDispatch } from "react-redux";
+import { getFoodImage } from "../../redux/actions";
 
 function FoodCard(props) {
     
-    const [theme] = useTheme();
+    const theme = useSelector((state) => state.darkTheme);
 
-    const {
-        foodImageUrl, 
-        fetchFoodImage, 
-    } = useHomepage();
+    const foodImageUrl = useSelector((state) => state.foodImage);
+
+    const dispatch = useDispatch();
+    
+    function fetchFoodImage() {
+        dispatch(getFoodImage());
+    }
 
     return (
         <>

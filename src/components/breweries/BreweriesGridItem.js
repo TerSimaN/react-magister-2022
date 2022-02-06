@@ -1,9 +1,9 @@
 import { Card, Col, ListGroup, ListGroupItem } from "react-bootstrap";
-import { useTheme } from "../../ThemeContext";
+import { useSelector } from "react-redux";
 
 function BreweriesGridItem({brewery}) {
 
-    const [theme] = useTheme();
+    const theme = useSelector((state) => state.darkTheme);
 
     return (
         <>

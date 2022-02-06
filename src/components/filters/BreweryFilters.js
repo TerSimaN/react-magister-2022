@@ -1,39 +1,24 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
-import { useTheme } from "../../ThemeContext";
-import { useBrewery } from "../breweries/BreweryContext";
-import { useDispatch } from "react-redux";
-import { getBreweries } from "../../redux/actions";
+import { useSelector, useDispatch } from "react-redux";
+import { setNameFilter, setCityFilter, setStateFilter, getBreweries } from "../../redux/actions";
 import SelectType from "./SelectType";
 import BreweriesPerPage from "./BreweriesPerPage";
 
 function BreweryFilters(props) {
 
-    const [theme] = useTheme();
-    const {selectedType, breweriesPerPage} = useBrewery();
-    const [nameFilter, setNameFilter] = useState("");
-    const [cityFilter, setCityFilter] = useState("");
-    const [stateFilter, setStateFilter] = useState("");
+    const theme = useSelector((state) => state.darkTheme);
+    const breweriesPerPage = useSelector((state) => state.breweriesPerPage);
+    const selectedType = useSelector((state) => state.selectedType);
+    const nameFilter = useSelector((state) => state.nameFilter);
+    const cityFilter = useSelector((state) => state.cityFilter);
+    const stateFilter = useSelector((state) => state.stateFilter);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         fetchBreweries();
     }, []);
-
-    function setFilters(element) {
-        if (element.target.name === "filterByName") {
-            setNameFilter(element.target.value);
-        }
-
-        if (element.target.name === "filterByCity") {
-            setCityFilter(element.target.value);
-        }
-        
-        if (element.target.name === "filterByState") {
-            setStateFilter(element.target.value);
-        }
-    }
 
     function onFormSubmit(form) {
         form.preventDefault();
@@ -70,7 +55,7 @@ function BreweryFilters(props) {
                     name="filterByName" 
                     type="text" 
                     placeholder="E.g. 101 Brewery" 
-                    onChange={setFilters} />
+                    onChange={(element) => {dispatch(setNameFilter(element.target.value))}} />
             </Form.Group>
             <Form.Group className="filter-form-group" controlId="formBreweryCity">
                 <Form.Label>Brewery City</Form.Label>
@@ -78,7 +63,7 @@ function BreweryFilters(props) {
                     name="filterByCity" 
                     type="text" 
                     placeholder="E.g. Portland"
-                    onChange={setFilters} />
+                    onChange={(element) => {dispatch(setCityFilter(element.target.value))}} />
             </Form.Group>
             <Form.Group className="filter-form-group" controlId="formBreweryState">
                 <Form.Label>Brewery State</Form.Label>
@@ -86,7 +71,7 @@ function BreweryFilters(props) {
                     name="filterByState" 
                     type="text" 
                     placeholder="E.g. Idaho"
-                    onChange={setFilters} />
+                    onChange={(element) => {dispatch(setStateFilter(element.target.value))}} />
             </Form.Group>
             <SelectType />
             <BreweriesPerPage />

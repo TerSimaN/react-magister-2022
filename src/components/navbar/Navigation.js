@@ -1,12 +1,12 @@
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import React from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
-import { useTheme } from "../../ThemeContext";
+import { useSelector } from 'react-redux';
 import ToggleTheme from './ToggleTheme';
 
 function Navigation(props) {
 
-    const [theme] = useTheme();
+    const theme = useSelector((state) => state.darkTheme);
 
     return (
         <>

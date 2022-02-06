@@ -1,5 +1,6 @@
 import { Form } from "react-bootstrap";
-import { useBrewery } from "../breweries/BreweryContext";
+import { useSelector, useDispatch } from "react-redux";
+import { setSelectedType } from "../../redux/actions";
 
 function SelectType(props) {
 
@@ -46,7 +47,8 @@ function SelectType(props) {
         },
     ]
 
-    const {selectedType, setSelectedType} = useBrewery();
+    const selectedType = useSelector((state) => state.selectedType);
+    const dispatch = useDispatch();
 
     function getTypeOptions() {
         return typeOptions.map(typeOption => {
@@ -64,7 +66,7 @@ function SelectType(props) {
                 <Form.Label>Select Brewery Type</Form.Label>
                 <Form.Select 
                     value={selectedType}
-                    onChange={element => setSelectedType(element.target.value)}>
+                    onChange={(element) => {dispatch(setSelectedType(element.target.value))}}>
                     {getTypeOptions()}
                 </Form.Select>
             </Form.Group>
